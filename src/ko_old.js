@@ -394,8 +394,7 @@ function fresh(list, keyf) {
 function wrongs2(pool, ans, extra) {
   const bad = [ans].concat(extra || []);
   const out = [];
-  for (const v of shuffle(pool)) { if (v != null && !bad.includes(v) && !out.includes(v)) out.push(v); if (out.length === 2) break; }
-  while (out.length < 2) out.push('보기' + (out.length + 1));
+  for (const v of shuffle(pool)) { if (v != null && !bad.includes(v) && !out.includes(v)) out.push(v); if (out.length === 3) break; }
   return out;
 }
 function mk(o) {

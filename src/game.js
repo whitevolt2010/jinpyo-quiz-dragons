@@ -3,7 +3,8 @@ const GAME_VERSION = 1;
 const $ = id => document.getElementById(id) || { style: {}, classList: { add() {}, remove() {}, toggle() {} }, addEventListener() {}, set innerHTML(v) {}, set textContent(v) {} };
 const IMG = 'assets/img/';
 const FAST = /[?&]fast/.test(location.search) ? 0.02 : 1;   /* 시험용: ?fast 면 연출을 빨리 */
-const wait = ms => new Promise(r => setTimeout(r, ms * FAST));
+let epoch = 0;   /* 메뉴로 화면을 떠나면 +1 → 진행 중이던 연출은 조용히 멈춤 */
+const wait = ms => { const ep = epoch; return new Promise(r => setTimeout(() => { if (ep === epoch) r(); }, ms * FAST)); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -28,6 +29,7 @@ function sprHTML(name, emo) { return '<img src="' + IMG + name + '.webp" alt="" 
 /* ===================== 소리 ===================== */
 const SFX_NAMES = ['coin', 'start', 'select', 'cursor', 'dice_roll', 'dice_stop', 'step', 'correct', 'wrong', 'attack', 'hit', 'enemy_attack', 'gem', 'monster_down', 'heal', 'treasure', 'magic', 'boss_appear', 'tick', 'timer_warn', 'levelup', 'stage_clear', 'game_over', 'continue'];
 const BGM_NAMES = ['title', 'map', 'battle', 'boss', 'inn', 'ending'];
+const BGM_VOL = 0.2;   /* 배경음악은 작게 — 공부에 방해되지 않게 */
 let AC = null, master, sfxBus, bgmBus, voiceBus;
 const BUF = {};
 let muted = false, bgmNode = null, bgmName = '', voiceNode = null;
@@ -37,7 +39,7 @@ function audioInit() {
   AC = new (window.AudioContext || window.webkitAudioContext)();
   master = AC.createGain(); master.connect(AC.destination);
   sfxBus = AC.createGain(); sfxBus.gain.value = 0.8; sfxBus.connect(master);
-  bgmBus = AC.createGain(); bgmBus.gain.value = 0.38; bgmBus.connect(master);
+  bgmBus = AC.createGain(); bgmBus.gain.value = BGM_VOL; bgmBus.connect(master);
   voiceBus = AC.createGain(); voiceBus.gain.value = 1.3; voiceBus.connect(master);
   loadSounds();
 }
@@ -99,7 +101,7 @@ function stopVoice() {
   speakToken++;
   if (voiceNode) { try { voiceNode.stop(); } catch (e) {} voiceNode = null; }
   if ('speechSynthesis' in window) speechSynthesis.cancel();
-  if (bgmBus) bgmBus.gain.value = 0.38;
+  if (bgmBus) bgmBus.gain.value = BGM_VOL;
 }
 async function playClip(key) {
   const id = CLIP[key]; if (id == null || !AC || muted) return false;
@@ -124,7 +126,7 @@ function ttsSay(text, lang) {
 async function speak(parts) {
   stopVoice(); const tok = speakToken;
   if (!AC || muted) return;
-  if (bgmBus) bgmBus.gain.value = 0.15;
+  if (bgmBus) bgmBus.gain.value = BGM_VOL * 0.35;
   for (const [l, t] of parts) {
     if (tok !== speakToken) return;
     if (!t) continue;
@@ -132,19 +134,21 @@ async function speak(parts) {
     if (!ok && tok === speakToken) await ttsSay(t, l);
     await wait(120);
   }
-  if (tok === speakToken && bgmBus) bgmBus.gain.value = 0.38;
+  if (tok === speakToken && bgmBus) bgmBus.gain.value = BGM_VOL;
 }
 
 /* ===================== 저장 ===================== */
 const SAVE_KEY = 'quiz-dragons-v1';
 let save = { hi: 0, p: { jinpyo: { stage: 1 }, jinseo: { stage: 1 } }, crt: true };
 try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (s && s.p && s.p.jinpyo && s.p.jinseo) save = Object.assign(save, s); } catch (e) {}
+function unlocked(who, lv) { const u = save.u || (save.u = {}); return u[who + lv] || 1; }
+function unlock(who, lv, st) { const u = save.u || (save.u = {}); if ((u[who + lv] || 1) < st) u[who + lv] = st; }
 function persist() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) {} }
 
 /* ===================== 자료 ===================== */
 const KIDS = {
-  jinpyo: { name: '진표', age: '7살', desc: '국어·영어 어휘<br>초1 → 초6 단계로 도전!', face: 'face_jinpyo', emo: '👦' },
-  jinseo: { name: '진서', age: '5살', desc: '그림 보고 소리 듣고<br>맞히는 그림 퀴즈!', face: 'face_jinseo', emo: '👧' },
+  jinpyo: { name: '진표', age: '7살', desc: '국어·영어 어휘 모험!<br>다음 화면에서 난이도를 골라요', face: 'face_jinpyo', emo: '👦' },
+  jinseo: { name: '진서', age: '5살', desc: '국어·영어 어휘 모험!<br>다음 화면에서 난이도를 골라요', face: 'face_jinseo', emo: '👧' },
 };
 const HEROES = {
   warrior: { name: '전사', emo: '🛡️', ab: '하트가 1개 더 많고<br>몬스터를 물리치면 하트 회복' },
@@ -157,15 +161,15 @@ const MON = [null,
   ['돌 골렘', '🗿'], ['미믹', '📦'], ['하피', '🦅'], ['오크', '👹'], ['마녀', '🧙‍♀️'], ['도마뱀 전사', '🦎'], ['미노타우로스', '🐂']];
 const BOSS = [null, ['아기 초록 용', '🐲'], ['바다뱀 용', '🐉'], ['얼음 용', '🐉'], ['번개 용', '🐉'], ['흑기사', '🤺'], ['쌍두 용', '🐉'], ['황금 용왕', '👑']];
 const STAGES = [null,
-  { name: '풀밭 마을', g: 1, mons: [1, 2, 3], boss: 1, mid: [4, '고블린 대장'] },
-  { name: '버섯 숲', g: 2, mons: [3, 2, 4, 6], boss: 6, mid: ['b1', '아기 초록 용'] },
-  { name: '바닷가 동굴', g: 3, mons: [2, 6, 9, 10], boss: 2, mid: ['b6', '쌍두 용'] },
-  { name: '사막 피라미드', g: 4, mons: [4, 5, 13, 9], boss: 4, mid: ['b2', '바다뱀 용'] },
-  { name: '눈 덮인 산', g: 5, mons: [7, 8, 6, 10], boss: 3, mid: ['b4', '번개 용'] },
+  { name: '풀밭 마을', g: 2, mons: [1, 2, 3], boss: 1, mid: [4, '고블린 대장'] },
+  { name: '버섯 숲', g: 3, mons: [3, 2, 4, 6], boss: 6, mid: ['b1', '아기 초록 용'] },
+  { name: '바닷가 동굴', g: 4, mons: [2, 6, 9, 10], boss: 2, mid: ['b6', '쌍두 용'] },
+  { name: '사막 피라미드', g: 5, mons: [4, 5, 13, 9], boss: 4, mid: ['b2', '바다뱀 용'] },
+  { name: '눈 덮인 산', g: 6, mons: [7, 8, 6, 10], boss: 3, mid: ['b4', '번개 용'] },
   { name: '불꽃 화산', g: 6, mons: [11, 12, 13, 8], boss: 5, mid: ['b3', '얼음 용'] },
   { name: '용의 성', g: 7, mons: [11, 12, 14, 5, 9], boss: 7, mid: ['b5', '흑기사'] },
 ];
-const JINSEO_SUB = ['', '그림 낱말', '그림 낱말 + 색깔', '소리 흉내말 + 숫자', '영어 그림 낱말', '영어 색깔·숫자', '국어·영어 섞어서', '모두 다 나와요!'];
+const JINSEO_SUB = ['', '그림 낱말 + 색깔', '영어 그림 낱말 시작', '소리 흉내말 + 숫자', '영어 색깔·숫자', '큰 숫자까지', '국어·영어 섞어서', '모두 다 나와요!'];
 
 /* ---------- 말판 지도(모든 스테이지 같은 모양, 칸 내용만 다름) ---------- */
 const NODES = [
@@ -182,8 +186,14 @@ const LAST = 27;
 function makeBoard(stage) {
   /* 칸 종류: m=몬스터 i=여관 f=요정 c=보물 d=용(반드시 멈춤) */
   const base = ['s', 'm', 'm', 'c', 'm', 'm', 'f', 'm', 'm', 'm', 'd', 'm', 'i', 'm', 'm', 'c', 'f', 'm', 'm', 'i', 'm', 'm', 'd', 'm', 'c', 'm', 'm', 'b'];
-  const koOnly = R.who === 'jinseo' && stage <= 3;
-  return base.map((t, i) => ({ t, cat: koOnly || (i + stage) % 2 ? 'ko' : 'en', done: false }));
+  /* 시작·용·보스 칸은 그대로, 나머지 칸 순서는 판마다 섞기 */
+  const fixed = [0, 10, 22, 27];
+  const free = base.map((t, i) => i).filter(i => !fixed.includes(i));
+  const mixed = shuf(free.map(i => base[i]));
+  free.forEach((i, k) => { base[i] = mixed[k]; });
+  R.monSeed = rndi(100);
+  const koOnly = R.level === 0 && stage <= 1;
+  return base.map((t, i) => ({ t, cat: koOnly || Math.random() < 0.5 ? 'ko' : 'en', done: false }));
 }
 
 /* ===================== 문제 만들기 ===================== */
@@ -191,8 +201,30 @@ function rndi(n) { return Math.floor(Math.random() * n); }
 function pick1(a) { return a[rndi(a.length)]; }
 function shuf(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = rndi(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function wsel(table) { let t = 0; for (const k in table) t += table[k]; let r = Math.random() * t; for (const k in table) { r -= table[k]; if (r < 0) return k; } return Object.keys(table)[0]; }
-const recentQ = [];
-function seenQ(key) { if (recentQ.includes(key)) return true; recentQ.push(key); if (recentQ.length > 120) recentQ.shift(); return false; }
+/* 최근에 나온 문제는 피하기 (판이 바뀌어도 기억) */
+const RECENT_KEY = 'quiz-dragons-recent-v1';
+let recentQ = []; try { recentQ = JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch (e) {}
+let recentDirty = 0;
+function seenQ(key) {
+  if (recentQ.includes(key)) return true;
+  recentQ.push(key); if (recentQ.length > 400) recentQ.shift();
+  if (++recentDirty % 5 === 0) try { localStorage.setItem(RECENT_KEY, JSON.stringify(recentQ)); } catch (e) {}
+  return false;
+}
+/* 카드 덱: 목록을 섞어 하나씩 뽑고, 다 뽑으면 다시 섞기 → 외워지지 않게 */
+const DECK_KEY = 'quiz-dragons-deck-v1';
+let DECK = {}; try { DECK = JSON.parse(localStorage.getItem(DECK_KEY)) || {}; } catch (e) {}
+function draw(name, list, idf) {
+  if (!list.length) return null;
+  name = (R && R.who || '') + ':' + name;
+  const ids = list.map(idf), have = new Set(ids);
+  let d = DECK[name] || [], id = null;
+  while (d.length && id == null) { const x = d.pop(); if (have.has(x)) id = x; }
+  if (id == null) { d = shuf(ids); id = d.pop(); }
+  DECK[name] = d;
+  try { localStorage.setItem(DECK_KEY, JSON.stringify(DECK)); } catch (e) {}
+  return list[ids.indexOf(id)];
+}
 function fromAW(o) { /* o: {q,a,w:[...],...} → 보기 섞기 */
   const ch = shuf([o.a, ...o.w]); return Object.assign({ choices: ch, ans: ch.indexOf(o.a), answer: o.a }, o);
 }
@@ -203,27 +235,51 @@ function pickWrong(pool, ans, n, bad) {
 }
 
 /* ---------- 국어 ---------- */
+const MEANING_TYPES = ['낱말 뜻', '한자어', '사자성어', '관용어', '속담'];
+const wordOf = q => { const m = q.match(/^"([^"]+)"의 뜻은\?$/); return m ? m[1] : null; };
 function koVocab(g) {
-  const list = (window.KO_VOCAB || []).filter(x => x[0] === g);
+  const all = (window.KO_VOCAB || []).concat(window.KO_VOCAB2 || []);
+  const list = all.filter(x => x[0] === g);
   if (!list.length) return null;
-  for (let t = 0; t < 30; t++) {
-    const [gg, type, q, a, w, ex] = pick1(list);
-    if (seenQ('kv' + q) && t < 29) continue;
-    return fromAW({ q, a, w: w.slice(0, 3), tag: type, hint: ex, say: [['k', q.replace(/\(\s*\)/g, '빈칸')]] });
+  const [gg, type, q, a, w, ex, big] = draw('kv' + g, list, x => x[2] + '|' + (x[6] || ''));
+  seenQ('kv' + q);
+  const say = [['k', q.replace(/\(\s*\)/g, '빈칸')]];
+  if (MEANING_TYPES.includes(type)) {
+    const same = all.filter(x => x[1] === type && x[3] !== a && Math.abs(x[0] - g) <= 1);
+    const word = wordOf(q);
+    /* 절반은 거꾸로: 뜻을 보여 주고 낱말 고르기 */
+    if (word && Math.random() < 0.5) {
+      const others = same.map(x => wordOf(x[2])).filter(x => x && x !== word);
+      if (others.length >= 3) {
+        const ws = pickWrong(others, word, 3);
+        return fromAW({ q: '이런 뜻을 가진 말은?', big: a, a: word, w: ws, tag: type + ' (거꾸로)', hint: '"' + word + '" = ' + a + '. ' + ex, say: [['k', '이런 뜻을 가진 말은?']] });
+      }
+    }
+    /* 보기도 매번 바뀌게: 원래 오답 2개 + 다른 문제의 뜻 1개 */
+    const extra = pickWrong(same.map(x => x[3]), a, 1, w);
+    const ws = shuf(w).slice(0, extra.length ? 2 : 3).concat(extra);
+    return fromAW({ q, big: big || '', a, w: ws, tag: type, hint: ex, say });
   }
+  return fromAW({ q, big: big || '', a, w: shuf(w).slice(0, 3), tag: type, hint: ex, say });
 }
+const AUG_TAGS = ['관용어', '사자성어', '낱말 뜻', '속담 뜻', '속담 쓰임', '흉내 내는 말', '높임말'];
 function koOld(g) {
-  const si = clamp(g, 1, 5) - 1;
+  const si = g >= 5 ? pick1([3, 4]) : clamp(g, 2, 5) - 1;
   for (let t = 0; t < 8; t++) {
     const q = makeQ(si);
     if (seenQ('ko' + q.q + q.big + q.answer) && t < 7) continue;
     if (q.tag === '글 읽기' && Math.random() < 0.6 && t < 7) continue;
-    /* 보기 3개짜리는 다른 보기 하나를 더 붙여 4지선다로 */
-    return { q: q.q, big: q.big, choices: q.choices, ans: q.ans, answer: q.answer, hint: q.hint, tag: q.tag, long: q.long, say: [['k', q.say]] };
+    /* 보기 3개짜리는 같은 종류 다른 문제의 정답을 하나 더 붙여 4지선다로 */
+    let choices = q.choices.slice();
+    if (choices.length === 3 && AUG_TAGS.includes(q.tag)) {
+      for (let k = 0; k < 12 && choices.length < 4; k++) { const o = makeQ(si); if (o.tag === q.tag && !choices.includes(o.answer) && String(o.answer).length <= String(q.answer).length + 6) choices.push(o.answer); }
+      choices = shuf(choices);
+    }
+    return { q: q.q, big: q.big, choices, ans: choices.indexOf(q.answer), answer: q.answer, hint: q.hint, tag: q.tag, long: q.long, say: [['k', q.say]] };
   }
 }
 function koQuestion(g) {
-  const oldShare = { 1: .6, 2: .5, 3: .45, 4: .45, 5: .3, 6: .2 }[g] || .4;
+  const oldShare = window.KO_VOCAB2 ? ({ 1: .15, 2: .25, 3: .25, 4: .25, 5: .2, 6: .15 }[g] || .2) : ({ 2: .45, 3: .4, 4: .4, 5: .3, 6: .25 }[g] || .3);
   let q = null;
   if (Math.random() >= oldShare) q = koVocab(g);
   if (!q) q = koOld(g >= 6 ? 5 : g);
@@ -235,7 +291,7 @@ const EN = {
   byG: g => WORDS.filter(w => w.g === g),
   near: g => WORDS.filter(w => Math.abs(w.g - g) <= 1),
 };
-function enWord(g) { const L = EN.byG(g); for (let t = 0; t < 30; t++) { const w = pick1(L); if (!seenQ('ew' + w.w) || t === 29) return w; } }
+function enWord(g) { return draw('ew' + g, EN.byG(g), w => w.w); }
 function josa(w, a, b) { const h = [...w].reverse().find(c => c >= '가' && c <= '힣'); if (!h) return a + '(' + b + ')'; return (h.charCodeAt(0) - 0xAC00) % 28 ? a : b; }
 const GENERIC_A = /^(Sure|Sounds|Okay|OK|Yes|No|Me, too|Great|Good|Of course|Thank|Thanks|You are welcome|Sorry|That|Why not|All right|Fine|Nice|Wow|Really|Let's)/i;
 function sameKo(a, b) { return a.k === b.k || a.w.toLowerCase() === b.w.toLowerCase(); }
@@ -247,7 +303,10 @@ function enGen(type, g) {
   }
   if (type === 'word') {
     const w = enWord(g);
-    const ws = shuf(EN.near(g).filter(x => !sameKo(x, w) && Math.abs(x.w.length - w.w.length) <= 3)).slice(0, 3);
+    /* 첫 글자나 길이가 비슷한 낱말을 보기로 → 더 헷갈리게 */
+    const near = EN.near(g).filter(x => !sameKo(x, w));
+    const alike = shuf(near.filter(x => x.w[0].toLowerCase() === w.w[0].toLowerCase() || Math.abs(x.w.length - w.w.length) <= 1));
+    const ws = alike.concat(shuf(near)).filter((x, i, a) => a.findIndex(y => y.w === x.w) === i).slice(0, 3);
     if (ws.length < 3) return enGen('meaning', g);
     return fromAW({ q: '"' + w.k + '"' + josa(w.k, '을', '를') + ' 영어로 하면?', big: w.e || '', a: w.w, w: ws.map(x => x.w), tag: '영어로 말하기', hint: w.k + ' = ' + w.w, say: [['k', w.k], ['k', '영어로 하면?']], sayAfter: [['e', w.w]], word: w, emoBig: true });
   }
@@ -273,7 +332,7 @@ function enGen(type, g) {
   if (type === 'sent') {
     const L = SENTS.filter(s => s.g === g && POOL[s.p]);
     for (let t = 0; t < 40; t++) {
-      const s = pick1(L); if (seenQ('se' + s.en) && t < 39) continue;
+      const s = t ? pick1(L) : draw('se' + g, L, x => x.en);
       const re = new RegExp('\\b' + s.b.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b');
       if (!re.test(s.en)) continue;
       const cap = /^[A-Z]/.test(s.b);
@@ -286,20 +345,30 @@ function enGen(type, g) {
   }
   if (type === 'talk') {
     const L = TALKS.filter(s => Math.abs(s.g - g) <= 1);
-    const s = pick1(L);
+    const s = draw('tk' + g, L, x => x.q + x.a);
     const ws = shuf(TALKS.filter(x => x.a !== s.a && x.q !== s.q && Math.abs(x.g - g) <= 2 && !GENERIC_A.test(x.a))).slice(0, 3).map(x => x.a);
     return fromAW({ q: '알맞은 대답은?', big: s.q, a: s.a, w: ws, tag: '대화', hint: s.q + ' — ' + s.a + '  (' + s.ko + ')', say: [['e', s.q]], sayAfter: [['e', s.a]] });
   }
 }
+/* 교과서·학습지 수준 영어 문제 */
+function enVocab2(g) {
+  const list = (window.EN_VOCAB2 || []).filter(x => x[0] === g);
+  if (!list.length) return null;
+  const [gg, type, q, big, a, w, ex, sp] = draw('ev' + g, list, x => x[2] + '|' + x[3] + '|' + x[4]);
+  const say = [['k', q]]; if (big && !/_/.test(big)) say.push(['e', big]);
+  return fromAW({ q, big: big || '', a, w: shuf(w).slice(0, 3), tag: type, hint: ex, say, sayAfter: sp ? [['e', sp]] : null });
+}
 function enQuestion(g) {
-  const W = g <= 1 ? { meaning: 35, word: 30, listen: 25, sent: 10 } : g === 2 ? { meaning: 30, word: 25, listen: 15, spell: 15, sent: 15 }
-    : { meaning: 25, word: 20, spell: 12, sent: 28, talk: 15 };
+  if (window.EN_VOCAB2 && Math.random() < 0.55) { const q = enVocab2(g); if (q) { q.cat = 'en'; return q; } }
+  const W = g <= 2 ? { meaning: 25, word: 25, spell: 20, sent: 20, listen: 10 }
+    : g <= 4 ? { meaning: 20, word: 20, spell: 15, sent: 30, talk: 15 }
+    : { meaning: 15, word: 20, spell: 15, sent: 35, talk: 15 };
   const q = enGen(wsel(W), g); q.cat = 'en'; return q;
 }
 
 /* ---------- 진서용 그림 퀴즈 ---------- */
 const COLORS = [['🔴', '빨간색', 'red'], ['🟠', '주황색', 'orange'], ['🟡', '노란색', 'yellow'], ['🟢', '초록색', 'green'], ['🔵', '파란색', 'blue'], ['🟣', '보라색', 'purple'], ['⚫', '검은색', 'black'], ['⚪', '하얀색', 'white'], ['🟤', '갈색', 'brown']];
-const NUMS = [[1, '하나', 'one'], [2, '둘', 'two'], [3, '셋', 'three'], [4, '넷', 'four'], [5, '다섯', 'five'], [6, '여섯', 'six']];
+const NUMS = [[1, '하나', 'one'], [2, '둘', 'two'], [3, '셋', 'three'], [4, '넷', 'four'], [5, '다섯', 'five'], [6, '여섯', 'six'], [7, '일곱', 'seven'], [8, '여덟', 'eight']];
 const COUNT_EMO = ['🍎', '⭐', '🐟', '🌸', '🍓', '🐥', '🎈', '🍪'];
 const SOUND_PIC = [['멍멍', '🐶'], ['야옹', '🐱'], ['꿀꿀', '🐷'], ['음매', '🐮'], ['꽥꽥', '🦆'], ['개굴개굴', '🐸'], ['삐약삐약', '🐥'], ['꼬끼오', '🐓'], ['어흥', '🐯'], ['붕붕', '🐝'], ['칙칙폭폭', '🚂'], ['부릉부릉', '🚗'], ['따르릉', '⏰'], ['히힝', '🐴'], ['짹짹', '🐦'], ['딩동', '🔔']];
 const KID_PIC = () => (typeof PIC !== 'undefined' ? PIC : []).filter(p => p[1].length <= 4 && !/[ㄱ-ㅎ]/.test(p[1]));
@@ -308,7 +377,7 @@ const EN_PIC = () => WORDS.filter(w => w.e && EN_PIC_OK.includes(w.w));
 function emoQ(o) { const q = fromAW(o); q.emo = true; q.kid = true; return q; }
 function kidGen(type) {
   if (type === 'kopic') {
-    const L = KID_PIC(); let p; for (let t = 0; t < 30; t++) { p = pick1(L); if (!seenQ('kp' + p[1])) break; }
+    const L = KID_PIC(); const p = draw('kp', L, x => x[1]);
     const ws = shuf(L.filter(x => x[0] !== p[0] && x[1] !== p[1])).slice(0, 3).map(x => x[0]);
     return emoQ({ cat: 'ko', q: '"' + p[1] + '" 어디 있을까?', a: p[0], w: ws, tag: '그림 낱말', hint: p[0] + ' ' + p[1], say: [['k', p[1]], ['k', '어디 있을까?']], answerSay: [['k', p[1]]] });
   }
@@ -322,36 +391,39 @@ function kidGen(type) {
     return emoQ({ cat: 'ko', q: '"' + s[0] + '" 소리를 내는 건?', a: s[1], w: ws, tag: '소리 흉내말', hint: s[1] + ' ' + s[0], say: [['k', s[0]], ['k', '소리를 내는 건 누구일까?']], answerSay: [['k', s[0]]] });
   }
   if (type === 'kocount' || type === 'encount') {
-    const n = pick1(NUMS.slice(0, 5)); const e = pick1(COUNT_EMO); const en = type === 'encount';
-    const ws = shuf(NUMS.slice(0, 6).filter(x => x !== n)).slice(0, 3);
+    const top = R.stage >= 5 ? 8 : 6;
+    const n = pick1(NUMS.slice(0, top)); const e = pick1(COUNT_EMO); const en = type === 'encount';
+    /* 가까운 숫자를 보기로 → 잘 세어야 맞힘 */
+    const ws = shuf(NUMS.slice(0, top).filter(x => x !== n && Math.abs(x[0] - n[0]) <= 3)).slice(0, 3);
     const show = k => e.repeat(k[0]);
     const q = fromAW({ cat: en ? 'en' : 'ko', q: en ? '"' + n[2] + '" 만큼 있는 건?' : '"' + n[1] + '" 만큼 있는 건?', a: show(n), w: ws.map(show), tag: en ? '영어 숫자' : '숫자', hint: n[0] + ' = ' + n[1] + ' = ' + n[2], say: en ? [['e', n[2]]] : [['k', n[1]]], answerSay: en ? [['e', n[2]]] : [['k', n[1]]] });
     q.emo = true; q.kid = true; q.count = true; return q;
   }
   if (type === 'enpic') {
-    const L = EN_PIC(); let w; for (let t = 0; t < 30; t++) { w = pick1(L); if (!seenQ('ep' + w.w)) break; }
+    const L = EN_PIC(); const w = draw('ep', L, x => x.w);
     const ws = shuf(L.filter(x => x.e !== w.e && x.k !== w.k)).slice(0, 3).map(x => x.e);
     return emoQ({ cat: 'en', q: '"' + w.w + '" 어디 있을까?', a: w.e, w: ws, tag: '영어 그림 낱말', hint: w.e + ' ' + w.w + ' = ' + w.k, say: [['e', w.w], ['k', '어디 있을까?']], answerSay: [['e', w.w], ['k', w.k]] });
   }
 }
 function kidQuestion(stage, cat) {
   const T = {
-    1: { ko: { kopic: 1 }, en: { kopic: 1 } },
-    2: { ko: { kopic: 2, kocolor: 1 }, en: { kocolor: 1, kopic: 1 } },
-    3: { ko: { kosound: 2, kocount: 1, kopic: 1 }, en: { kosound: 1, kocount: 1 } },
-    4: { ko: { kopic: 1, kosound: 1 }, en: { enpic: 3, encolor: 1 } },
-    5: { ko: { kosound: 1, kocount: 1 }, en: { encolor: 2, encount: 2, enpic: 2 } },
+    1: { ko: { kopic: 2, kocolor: 1 }, en: { kopic: 1 } },
+    2: { ko: { kopic: 1, kosound: 1, kocolor: 1 }, en: { enpic: 3, encolor: 1 } },
+    3: { ko: { kosound: 2, kocount: 1, kopic: 1 }, en: { enpic: 2, encolor: 1, encount: 1 } },
+    4: { ko: { kopic: 1, kosound: 1, kocount: 1 }, en: { enpic: 2, encolor: 1, encount: 1 } },
+    5: { ko: { kosound: 1, kocount: 2, kopic: 1 }, en: { encolor: 1, encount: 2, enpic: 2 } },
     6: { ko: { kopic: 1, kosound: 1, kocount: 1, kocolor: 1 }, en: { enpic: 2, encolor: 1, encount: 1 } },
     7: { ko: { kopic: 1, kosound: 1, kocount: 1 }, en: { enpic: 2, encolor: 1, encount: 1 } },
   }[stage][cat];
   const q = kidGen(wsel(T));
-  if (stage <= 2 && q.choices.length > 3) { /* 처음엔 보기 3개 */ const drop = pick1(q.choices.map((c, i) => i).filter(i => i !== q.ans)); q.choices = q.choices.filter((c, i) => i !== drop); q.ans = q.choices.indexOf(q.answer); }
   return q;
 }
 
 function makeQuestion(cat) {
-  if (R.who === 'jinseo') return kidQuestion(R.stage, cat);
-  let g = STAGES[R.stage].g; if (g === 7) g = 4 + rndi(3);
+  if (R.level === 0) return kidQuestion(R.stage, cat);
+  /* 고른 학년 그대로, 6~7스테이지는 한 학년 위 문제가 조금 섞임 */
+  let g = R.level;
+  if (R.stage >= 6 && g < 6 && Math.random() < 0.3) g++;
   const q = cat === 'ko' ? koQuestion(g) : enQuestion(g);
   q.g = g; return q;
 }
@@ -367,15 +439,15 @@ function show(id) {
 }
 function hud() {
   if (!R) return;
-  $('hudWho').innerHTML = '1P ' + KIDS[R.who].name + ' · ' + HEROES[R.hero].name;
+  $('hudWho').innerHTML = KIDS[R.who].name + ' · ' + (R.level ? LEVELS[R.level][0] : '그림') + ' · ' + HEROES[R.hero].name;
   let h = '';
   for (let i = 0; i < R.maxHp; i++) h += i < R.hp ? sprHTML('heart', '❤️') : sprHTML('heart_empty', '🤍');
   $('hearts').innerHTML = h;
-  $('hudStage').textContent = 'STAGE ' + R.stage;
+  $('hudStage').textContent = 'ST.' + R.stage;
   $('hudScore').textContent = String(R.score).padStart(7, '0');
   const it = R.items;
-  $('items').innerHTML = [['potion', '🧪', '물약: 하트 2개 회복'], ['hint', '💡', '힌트: 틀린 보기 2개 지우기'], ['clock', '⏰', '시계: 시간 멈춤']]
-    .map(([k, e, t]) => '<span class="item ' + (it[k] ? 'use' : 'zero') + '" data-k="' + k + '" title="' + t + '">' + e + ' ' + it[k] + '</span>').join('');
+  $('items').innerHTML = [['potion', '🧪', '물약: 하트 2개 회복'], ['hint', '💡', '힌트: 틀린 보기 2개 지우기'], ['shield', '🛡️', '방패: 틀려도 하트가 줄지 않아요 (자동)']]
+    .map(([k, e, t]) => '<span class="item ' + (it[k] ? 'use' : 'zero') + '" data-k="' + k + '" title="' + t + '">' + e + it[k] + '</span>').join('');
 }
 $('items').addEventListener('click', e => { const el = e.target.closest('.item'); if (el) useItem(el.dataset.k); });
 function addScore(n) { R.score += n; if (R.score > save.hi) { save.hi = R.score; } hud(); }
@@ -402,23 +474,38 @@ function cardsHTML(list, cls) {
 function toSelectKid() {
   show('select'); selStep = 'kid'; selVal = null;
   $('selTitle').textContent = '누가 모험을 떠날까요?'; $('selSub').textContent = '';
-  cardsHTML(Object.entries(KIDS).map(([v, k]) => ({ v, html: '<div class="face" style="border:none;background:none;border-radius:0">' + '<img src="assets/' + k.face + '.png" alt="" onerror="this.outerHTML=\'' + k.emo + '\'"></div><div class="nm">' + k.name + ' <small style="font-size:24px">(' + k.age + ')</small></div><div class="ds">' + k.desc + '<br><span style="color:#ffd23f">STAGE ' + save.p[v].stage + '까지 열림</span></div>' })), 'kids');
+  cardsHTML(Object.entries(KIDS).map(([v, k]) => ({ v, html: '<div class="face" style="border:none;background:none;border-radius:0">' + '<img src="assets/' + k.face + '.png" alt="" onerror="this.outerHTML=\'' + k.emo + '\'"></div><div class="nm">' + k.name + ' <small style="font-size:24px">(' + k.age + ')</small></div><div class="ds">' + k.desc + '</div>' })), 'kids');
   speak([['k', '누가 모험을 떠날까요?']]);
 }
+const LEVELS = [
+  ['그림 퀴즈', '글을 몰라도 OK!<br>그림 보고 소리 듣고', '🖼️'],
+  ['초1', '쉬운 낱말·흉내말<br>영어 첫 낱말', '1'], ['초2', '생활 낱말·반대말<br>영어 철자·문장', '2'],
+  ['초3', '높임말·감정 낱말<br>영어 문장·대화', '3'], ['초4', '한자어·속담·관용어<br>영어 문장·대화', '4'],
+  ['초5', '교과 낱말·사자성어<br>영어 긴 문장', '5'], ['초6', '어려운 낱말·사자성어<br>영어 고급 문장', '6'],
+];
+function toSelectLevel() {
+  selStep = 'level'; selVal = R.level != null ? R.level : (R.who === 'jinseo' ? 0 : 2);
+  $('selTitle').textContent = '난이도를 골라요!'; $('selSub').textContent = KIDS[R.who].name + '에게 맞는 단계를 골라요';
+  $('cards').className = 'cards'; $('cards').style.flexWrap = 'wrap';
+  $('cards').innerHTML = LEVELS.map((l, i) => '<div class="card panel" data-v="' + i + '" style="max-width:270px;min-width:262px;flex:0 0 262px;padding:10px 12px"><div class="nm" style="font-size:' + (i ? 40 : 32) + 'px">' + (i ? '' : '🖼️ ') + l[0] + '</div><div class="ds" style="font-size:19px">' + l[1] + '</div><div style="font-size:17px;color:#ffd23f;margin-top:4px">STAGE ' + unlocked(R.who, i) + '까지 열림</div></div>').join('');
+  markSel();
+  speak([['k', '난이도를 골라요!']]);
+}
 function toSelectHero() {
+  $('cards').style.flexWrap = '';
   selStep = 'hero'; selVal = null;
   $('selTitle').textContent = '용사를 골라요!'; $('selSub').textContent = '용사마다 특별한 힘이 있어요';
   cardsHTML(Object.entries(HEROES).map(([v, h]) => ({ v, html: '<div class="pic"><div class="spr">' + sprHTML('hero_' + v, h.emo) + '</div></div><div class="nm">' + h.name + '</div><div class="ab">' + h.ab + '</div>' })), 'heroes');
   speak([['k', '용사를 골라요!']]);
 }
 function toSelectStage() {
-  selStep = 'stage'; selVal = save.p[R.who].stage;
+  selStep = 'stage'; selVal = Math.min(R.stage || 99, unlocked(R.who, R.level));
   $('selTitle').textContent = '어느 스테이지부터 할까요?'; $('selSub').textContent = '열린 스테이지만 고를 수 있어요';
-  const max = save.p[R.who].stage;
+  const max = unlocked(R.who, R.level);
   $('cards').className = 'cards'; $('cards').style.flexWrap = 'wrap';
   $('cards').innerHTML = STAGES.slice(1).map((s, i) => {
     const n = i + 1, open = n <= max;
-    const sub = R.who === 'jinseo' ? JINSEO_SUB[n] : (s.g === 7 ? '초4~초6 최종' : '초등 ' + s.g + '학년');
+    const sub = R.level === 0 ? JINSEO_SUB[n] : LEVELS[R.level][0] + (n >= 6 && R.level < 6 ? ' + 조금 더 어려운 문제' : n === 7 ? ' 최종' : '');
     return '<div class="card panel' + (open ? '' : ' locked') + '" data-v="' + n + '" style="max-width:280px;min-width:270px;flex:0 0 270px;padding:12px;' + (open ? '' : 'opacity:.4') + '"><div class="nm" style="font-size:28px">' + (open ? '' : '🔒 ') + n + '. ' + s.name + '</div><div class="ds" style="font-size:20px">' + sub + '</div></div>';
   }).join('');
   markSel();
@@ -429,21 +516,23 @@ $('cards').addEventListener('click', e => {
   audioInit(); sfx('cursor'); selVal = c.dataset.v; markSel();
   if (selStep === 'kid') speak([['k', KIDS[selVal].name]]);
   if (selStep === 'hero') speak([['k', HEROES[selVal].name]]);
+  if (selStep === 'level') speak([['k', selVal == 0 ? '그림 퀴즈' : '초' + selVal]]);
 });
 $('cards').addEventListener('dblclick', () => $('selGo').click());
 $('selGo').addEventListener('click', () => {
   if (!selVal) { sfx('wrong'); return; }
   sfx('select');
-  if (selStep === 'kid') { R = { who: selVal }; toSelectHero(); return; }
-  if (selStep === 'hero') { R.hero = selVal; if (save.p[R.who].stage > 1) { toSelectStage(); return; } selVal = 1; }
+  if (selStep === 'kid') { R = { who: selVal }; toSelectLevel(); return; }
+  if (selStep === 'level') { R.level = +selVal; toSelectHero(); return; }
+  if (selStep === 'hero') { R.hero = selVal; if (unlocked(R.who, R.level) > 1) { toSelectStage(); return; } selVal = 1; }
   $('cards').style.flexWrap = '';
   startRun(+selVal);
 });
 
 /* ===================== 판 시작 ===================== */
 function startRun(stage) {
-  const maxHp = (R.who === 'jinseo' ? 6 : 5) + (R.hero === 'warrior' ? 1 : 0);
-  Object.assign(R, { stage, hp: maxHp, maxHp, score: 0, items: { potion: 1, hint: 1, clock: 0 }, continues: 0, wrongs: [], right: 0, total: 0 });
+  const maxHp = (R.level <= 1 ? 6 : 5) + (R.hero === 'warrior' ? 1 : 0);
+  Object.assign(R, { stage, hp: maxHp, maxHp, score: 0, items: { potion: 1, hint: 1, shield: 0 }, continues: 0, wrongs: [], right: 0, total: 0 });
   startStage();
 }
 function startStage() {
@@ -479,7 +568,7 @@ function drawMap() {
   $('token').innerHTML = '<div class="spr">' + sprHTML('hero_' + R.hero, HEROES[R.hero].emo) + '</div>';
   placeToken(R.pos, true);
 }
-function monFor(i) { const L = STAGES[R.stage].mons; return L[(i * 7 + R.stage) % L.length]; }
+function monFor(i) { const L = STAGES[R.stage].mons; return L[(i * 7 + R.stage + (R.monSeed || 0)) % L.length]; }
 function placeToken(i, instant) {
   const t = $('token'); if (instant) t.style.transition = 'none';
   t.style.left = NODES[i][0] + 'px'; t.style.top = NODES[i][1] + 'px';
@@ -518,7 +607,8 @@ async function move(n) {
 function chooseFork(opts) {
   return new Promise(res => {
     $('forkMsg').style.display = 'block'; speak([['k', '어느 길로 갈까요?']]);
-    mapMsg('갈림길!', '<b>아래 길</b>: 🏠여관에서 쉬어 가요<br><b>윗길</b>: 🎁보물과 🧚요정이 있어요');
+    const ic = ids => ids.map(i => ({ m: '⚔️', i: '🏠', f: '🧚', c: '🎁', d: '🐉' }[R.board[i].t] || '')).join(' ');
+    mapMsg('갈림길! 어느 길로 갈까요?', '<b>아래 길</b>: ' + ic([11, 12, 13]) + '<br><b>윗길</b>: ' + ic([14, 15, 16]));
     const els = opts.map(i => document.querySelector('.node[data-i="' + i + '"]'));
     els.forEach(e => e.classList.add('reach'));
     const h = e => {
@@ -550,7 +640,7 @@ function backToMap(msg) {
 /* ===================== 전투 ===================== */
 let B = null;
 function gemsNeeded(kind) {
-  const kid = R.who === 'jinseo';
+  const kid = R.level === 0;
   if (kind === 'boss') return kid ? 4 : (R.stage === 7 ? 7 : 5);
   if (kind === 'mid') return kid ? 3 : 3;
   return kid ? (R.stage <= 2 ? 1 : 2) : 2;
@@ -582,11 +672,11 @@ function drawGems() {
 }
 function clearQ() {
   $('qtext').textContent = ''; $('qbig').textContent = ''; $('choices').innerHTML = ''; $('cat').style.display = 'none';
-  $('ability').style.display = 'none'; $('explain').style.display = 'none'; $('timer').style.display = 'none'; $('qbox').style.display = 'none';
+  $('ability').style.display = 'none'; $('explain').style.display = 'none'; $('qbox').style.display = 'none';
 }
 function battleCat() {
   if (B.kind === 'mon') return B.cat;
-  if (R.who === 'jinseo' && R.stage <= 3) return 'ko';
+  if (R.level === 0 && R.stage <= 1) return 'ko';
   return B.qn % 2 ? 'en' : 'ko';
 }
 async function nextQuestion() {
@@ -608,7 +698,6 @@ async function nextQuestion() {
   else if (B.amazon) { abilityMsg('🏹 아마존의 눈! 틀린 보기가 사라졌어요'); sfx('magic'); }
   B.locked = false;
   readQ(q);
-  startTimer(q);
 }
 function pickCategory() {
   return new Promise(res => {
@@ -623,7 +712,6 @@ function renderQ(q) {
   c.innerHTML = sprHTML(q.cat === 'ko' ? 'icon_ko' : 'icon_en', q.cat === 'ko' ? '📜' : '🔤') + (q.cat === 'ko' ? '국어' : '영어') + ' · ' + esc(q.tag || '');
   const long = q.long || (q.big && q.big.length > 40);
   $('qbox').style.display = 'block'; $('qbox').classList.toggle('tall', !!long);
-  $('timer').classList.toggle('tall', !!long);
   $('qtext').textContent = q.q;
   const big = $('qbig'); big.className = '';
   if (q.big) {
@@ -649,37 +737,11 @@ function readQ(q) { if (q.say) speak(q.say); }
 $('speakBtn').addEventListener('click', e => { e.stopPropagation(); if (B && B.q) readQ(B.q); });
 $('choices').addEventListener('click', e => { const b = e.target.closest('.ch'); if (b) answer(+b.dataset.i); });
 
-/* ---------- 시간 ---------- */
-let T = { left: 0, max: 0, id: null, frozen: false };
-function qTime(q) {
-  if (R.who === 'jinseo') return 40;
-  let t = 22 + (q.g || 1) * 2;
-  if (q.long) t += 25; else if (q.big && q.big.length > 20) t += 8;
-  if (q.say && q.cat === 'en') t += 3;
-  return t;
-}
-function startTimer(q) {
-  stopTimer(); T.max = T.left = qTime(q); T.frozen = false;
-  $('timer').style.display = 'block'; $('timer').classList.remove('warn'); $('timerBar').style.width = '100%';
-  let last = performance.now();
-  T.id = setInterval(() => {
-    const now = performance.now(), dt = (now - last) / 1000; last = now;
-    if (T.frozen || B.locked) return;
-    const before = Math.ceil(T.left);
-    T.left -= dt;
-    const after = Math.ceil(T.left);
-    $('timerBar').style.width = Math.max(0, T.left / T.max * 100) + '%';
-    if (T.left < 6) { $('timer').classList.add('warn'); if (after !== before && after > 0) sfx('timer_warn'); }
-    if (T.left <= 0) { stopTimer(); answer(-1); }
-  }, 100);
-}
-function stopTimer() { if (T.id) clearInterval(T.id); T.id = null; }
-
 /* ---------- 답하기 ---------- */
 async function answer(i) {
   if (!B || B.locked || scene !== 'battle') return;
   const q = B.q; if (i >= 0 && q.gone && q.gone.includes(i)) return;
-  B.locked = true; stopTimer(); stopVoice();
+  B.locked = true; stopVoice();
   $('choices').classList.add('locked');
   const btns = [...document.querySelectorAll('#choices .ch')];
   const ok = i === q.ans;
@@ -687,7 +749,7 @@ async function answer(i) {
     btns[i].classList.add('right'); btns.forEach((b, k) => { if (k !== i) b.classList.add('dim'); });
     sfx('correct'); stamp(pick1(['딩동댕!', '정답!', '최고!', '굉장해!']), '#3ee07a');
     R.right++; R.stageRight++;
-    const bonus = Math.round(100 + Math.max(0, T.left) * 20) * (B.ninja ? 2 : 1);
+    const bonus = (100 + 100 * Math.min(B.qn, 5)) * (B.ninja ? 2 : 1);
     addScore(bonus);
     if (q.sayAfter || q.answerSay) speak(q.sayAfter || q.answerSay); else if (q.cat === 'en' && q.word) speak([['e', q.word.w]]);
     await wait(500);
@@ -698,7 +760,7 @@ async function answer(i) {
   } else {
     if (i >= 0) btns[i].classList.add('wrong');
     btns[q.ans].classList.add('right');
-    sfx('wrong'); stamp(i < 0 ? '시간 끝!' : '땡!', '#ff4d5e');
+    sfx('wrong'); stamp('땡!', '#ff4d5e');
     R.wrongs.push(q); R.stageWrongs.push(q);
     await wait(700);
     await monsterAttack();
@@ -722,15 +784,16 @@ async function monsterAttack() {
   await wait(200);
   h.classList.remove('hitflash'); void h.offsetWidth; h.classList.add('hitflash');
   $('stage').classList.add('shake'); setTimeout(() => $('stage').classList.remove('shake'), 400);
-  R.hp = Math.max(0, R.hp - 1); hud();
-  const d = document.createElement('div'); d.className = 'dmg'; d.textContent = '💔'; d.style.left = '170px'; d.style.top = '150px'; $('fx').appendChild(d); setTimeout(() => d.remove(), 1000);
+  let mark = '💔';
+  if (R.items.shield > 0) { R.items.shield--; mark = '🛡️'; sfx('magic'); } else R.hp = Math.max(0, R.hp - 1);
+  hud();
+  const d = document.createElement('div'); d.className = 'dmg'; d.textContent = mark; d.style.left = '170px'; d.style.top = '150px'; $('fx').appendChild(d); setTimeout(() => d.remove(), 1000);
   await wait(400);
 }
 function showExplain(q, i) {
   $('choices').innerHTML = '';
   $('explain').style.display = 'block';
-  $('exH').textContent = i < 0 ? '⏰ 시간이 다 됐어요! 정답은…' : '😅 아쉬워요! 정답은…';
-  $('timer').style.display = 'none';
+  $('exH').textContent = '😅 아쉬워요! 정답은…';
   $('exA').innerHTML = q.emo ? '<span style="font-size:' + (q.count ? 44 : 72) + 'px;vertical-align:middle">' + esc(q.answer) + '</span>  ' + esc((q.hint || '').replace(q.answer, '').trim()) : esc(q.answer);
   $('exE').textContent = q.emo ? '' : (q.hint || '');
   const parts = [['k', '정답은']];
@@ -782,7 +845,7 @@ function useItem(k) {
     document.querySelectorAll('#choices .ch').forEach((b, i) => b.classList.toggle('gone', q.gone.includes(i)));
     hud();
   }
-  if (k === 'clock') { if (T.frozen) return; R.items.clock--; T.frozen = true; sfx('magic'); $('timerBar').style.background = '#9fe3ff'; hud(); }
+
 }
 
 /* ===================== 이벤트 칸 ===================== */
@@ -803,7 +866,7 @@ function eventInn(i) {
 }
 function eventElf(i) {
   R.board[i].done = true; bgm('inn');
-  eventScreen('bg_elf', 'npc_elf', '🧚', '반짝반짝~ 나는 요정이야! ✨<br>내 문제를 맞히면 <b>마법 아이템</b>을 줄게!<br>(💡힌트 · ⏰시계 · 🧪물약 중 하나)',
+  eventScreen('bg_elf', 'npc_elf', '🧚', '반짝반짝~ 나는 요정이야! ✨<br>내 문제를 맞히면 <b>마법 아이템</b>을 줄게!<br>(💡힌트 · 🛡️방패 · 🧪물약 중 하나)',
     [['문제 풀기!', '', () => miniQuiz('elf')], ['지나가기', 'gray', () => backToMap()]]);
   sfx('magic'); speak([['k', '반짝반짝, 나는 요정이야!']]);
 }
@@ -820,7 +883,7 @@ function openChest() {
   else if (r < 0.55) { heal(R.maxHp); msg = '💖 하트가 모두 찼어요!'; }
   else if (r < 0.75) { R.items.hint++; msg = '💡 힌트를 얻었어요!'; }
   else if (r < 0.9) { R.items.potion++; msg = '🧪 물약을 얻었어요!'; }
-  else { R.items.clock++; msg = '⏰ 시계를 얻었어요!'; }
+  else { R.items.shield++; msg = '🛡️ 방패를 얻었어요! 한 번 틀려도 하트가 그대로예요'; }
   hud(); $('evSay').innerHTML = msg; speak([['k', '보물이다!']]);
   $('evBtns').innerHTML = ''; const b = document.createElement('button'); b.className = 'abtn'; b.textContent = '계속 ▶'; b.onclick = () => backToMap(msg); $('evBtns').appendChild(b);
 }
@@ -840,14 +903,14 @@ answer = async function (i) {
   if (!B || B.kind !== 'event') return _answer(i);
   if (B.locked) return;
   const q = B.q; if (i >= 0 && q.gone && q.gone.includes(i)) return;
-  B.locked = true; stopTimer(); stopVoice(); $('choices').classList.add('locked');
+  B.locked = true; stopVoice(); $('choices').classList.add('locked');
   const btns = [...document.querySelectorAll('#choices .ch')]; const ok = i === q.ans;
   btns[q.ans].classList.add('right'); if (!ok && i >= 0) btns[i].classList.add('wrong');
   let msg;
   if (ok) {
     sfx('correct'); stamp('정답!', '#3ee07a'); R.right++; addScore(200);
     if (B.ev === 'inn') { heal(3); msg = '🍲 맛있는 수프! 하트 +3'; }
-    else { const k = pick1(['hint', 'clock', 'potion']); R.items[k]++; sfx('magic'); msg = '✨ 요정의 선물: ' + { hint: '💡 힌트', clock: '⏰ 시계', potion: '🧪 물약' }[k] + '!'; }
+    else { const k = pick1(['hint', 'shield', 'potion']); R.items[k]++; sfx('magic'); msg = '✨ 요정의 선물: ' + { hint: '💡 힌트', shield: '🛡️ 방패', potion: '🧪 물약' }[k] + '!'; }
   } else {
     sfx('wrong'); stamp('땡!', '#ff4d5e'); R.wrongs.push(q); R.stageWrongs.push(q);
     if (B.ev === 'inn') { heal(1); msg = '정답은 "' + q.answer + '" · 그래도 하트 +1'; } else msg = '정답은 "' + q.answer + '" · 다음에 또 만나!';
@@ -859,7 +922,7 @@ answer = async function (i) {
 
 /* ===================== 스테이지 클리어 / 게임 오버 ===================== */
 function stageClear() {
-  show('clear'); bgm(''); sfx('stage_clear'); stopTimer();
+  show('clear'); bgm(''); sfx('stage_clear'); 
   $('clearBg').style.backgroundImage = 'url(' + IMG + 'bg_map_' + R.stage + '.webp)';
   const bonus = R.hp * 500; addScore(bonus);
   const pct = R.stageTotal ? Math.round(R.stageRight / R.stageTotal * 100) : 100;
@@ -868,7 +931,7 @@ function stageClear() {
   $('clearWrongs').style.display = ws.length ? '' : 'none';
   $('clearWrongs').innerHTML = '<div style="color:#ffd23f">📒 틀린 문제 다시 보기</div>' + ws.map(q => '· ' + esc(q.q) + (q.big && !q.emo ? ' <span style="color:#ffd23f">' + esc(String(q.big).slice(0, 60)) + '</span>' : '') + ' → <b>' + esc(q.answer) + '</b>' + (q.hint && !q.emo ? ' <span style="color:#b9b0d6">(' + esc(q.hint) + ')</span>' : '')).join('<br>');
   const next = R.stage + 1;
-  if (next <= 7 && save.p[R.who].stage < next) save.p[R.who].stage = next;
+  if (next <= 7) unlock(R.who, R.level, next);
   persist();
   $('clearNext').textContent = R.stage >= 7 ? '엔딩 보기 ▶' : '다음 스테이지 ▶';
   speak([['k', '스테이지 클리어!']]);
@@ -880,7 +943,7 @@ $('clearNext').addEventListener('click', () => {
 });
 let overId = null;
 function gameOver() {
-  show('over'); bgm(''); sfx('game_over'); stopTimer(); persist();
+  show('over'); bgm(''); sfx('game_over'); persist();
   let n = 9; $('overCnt').textContent = n; $('overT').textContent = 'CONTINUE?';
   speak([['k', '다시 도전할까요?']]);
   clearInterval(overId);
@@ -905,9 +968,45 @@ function ending() {
 }
 $('endBtn').addEventListener('click', () => { sfx('select'); toTitle(); });
 
+/* ===================== 메뉴 ===================== */
+function leave() {
+  epoch++; rolling = false; forkKeys = null; stopVoice();
+  $('forkMsg').style.display = 'none'; $('pickCat').style.display = 'none'; clearInterval(overId);
+  $('fx').innerHTML = ''; B = null;
+}
+function openMenu() {
+  if (!R || !['map', 'battle', 'event'].includes(scene)) return;
+  audioInit(); sfx('select');
+  $('menuSound').textContent = muted ? '🔊 소리 켜기' : '🔇 소리 끄기';
+  $('menu').style.display = 'flex';
+}
+function closeMenu() { $('menu').style.display = 'none'; }
+$('menuBtn').addEventListener('click', e => { e.stopPropagation(); openMenu(); });
+$('menu').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const act = b.dataset.act; sfx('select');
+  if (act === 'resume') return closeMenu();
+  if (act === 'sound') { setMute(!muted); $('menuSound').textContent = muted ? '🔊 소리 켜기' : '🔇 소리 끄기'; return; }
+  closeMenu(); leave();
+  if (act === 'restart') { R.hp = R.maxHp; startStage(); }
+  if (act === 'stage') { $('cards').style.flexWrap = ''; show('select'); toSelectStage(true); }
+  if (act === 'kid') toSelectKid();
+  if (act === 'level') { show('select'); toSelectLevel(); }
+  if (act === 'title') { persist(); toTitle(); }
+});
+$('selBack').addEventListener('click', () => {
+  sfx('select'); stopVoice(); $('cards').style.flexWrap = '';
+  if (selStep === 'stage') return toSelectHero();
+  if (selStep === 'hero') return toSelectLevel();
+  if (selStep === 'level') return toSelectKid();
+  toTitle();
+});
+
 /* ===================== 키보드 ===================== */
 addEventListener('keydown', e => {
   const k = e.code;
+  if (k === 'Escape') { if ($('menu').style.display === 'flex') closeMenu(); else openMenu(); return; }
+  if ($('menu').style.display === 'flex') return;
   if (scene === 'title' && (k === 'Enter' || k === 'Space' || k === 'KeyZ')) { e.preventDefault(); titlePress(); return; }
   if (scene === 'battle') {
     if ($('explain').style.display === 'block' && (k === 'Enter' || k === 'Space')) { $('exNext').click(); return; }
