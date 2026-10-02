@@ -1,0 +1,434 @@
+[
+  {
+    "name": "hero_warrior",
+    "subject": "brave boy warrior, red cape, small sword, round shield",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Create one game sprite, hero_warrior. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, child-friendly. A brave young boy warrior in red cape holding a small sword and round shield, full body visible, front three-quarter battle-ready stance. Square composition with 10% empty padding. Flat solid pure magenta #FF00FF background for chroma-key extraction; no pink/magenta on character. No shadows outside sprite, no text, no letters, no logo, no watermark, no checkerboard. Deliver a single square image."
+  },
+  {
+    "name": "hero_wizard",
+    "subject": "young child wizard, blue pointed hat, star-tipped staff",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: young child wizard, blue pointed hat, star-tipped staff. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Child hero, front three-quarter battle-ready stance, consistent 3-head-tall chibi proportions. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "hero_amazon",
+    "subject": "young girl archer, green clothes, bow",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: young girl archer, green clothes, bow. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Child hero, front three-quarter battle-ready stance, consistent 3-head-tall chibi proportions. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "hero_ninja",
+    "subject": "young child ninja, purple hood, shuriken",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: young child ninja, purple hood, shuriken. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Child hero, front three-quarter battle-ready stance, consistent 3-head-tall chibi proportions. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_01",
+    "subject": "green slime",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: green slime. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_02",
+    "subject": "bat",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: bat. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_03",
+    "subject": "mushroom monster",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: mushroom monster. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_04",
+    "subject": "goblin",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: goblin. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_05",
+    "subject": "cute skeleton soldier",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: cute skeleton soldier. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_06",
+    "subject": "friendly ghost",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: friendly ghost. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_07",
+    "subject": "wolf",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: wolf. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_08",
+    "subject": "stone golem",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: stone golem. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_09",
+    "subject": "treasure chest mimic",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: treasure chest mimic. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_10",
+    "subject": "harpy bird",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: harpy bird. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_11",
+    "subject": "orc",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: orc. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_12",
+    "subject": "witch",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: witch. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_13",
+    "subject": "lizard warrior",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: lizard warrior. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "mon_14",
+    "subject": "minotaur",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: minotaur. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_1",
+    "subject": "baby green dragon",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: baby green dragon. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_2",
+    "subject": "blue sea-serpent dragon",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: blue sea-serpent dragon. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_3",
+    "subject": "pale blue ice dragon",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: pale blue ice dragon. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_4",
+    "subject": "yellow lightning dragon",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: yellow lightning dragon. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_5",
+    "subject": "black armored knight",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: black armored knight. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_6",
+    "subject": "purple two-headed dragon, exactly two distinct heads",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: purple two-headed dragon, exactly two distinct heads. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "boss_7",
+    "subject": "gold and black dragon king with crown",
+    "size": 768,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: gold and black dragon king with crown. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition. Facing LEFT, nose/beak/snout points toward left edge, three-quarter profile. No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "npc_inn",
+    "subject": "plump friendly middle-aged innkeeper woman, apron, holding bowl of soup",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: plump friendly middle-aged innkeeper woman, apron, holding bowl of soup. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "npc_elf",
+    "subject": "small winged fairy with sparkles",
+    "size": 512,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: small winged fairy with sparkles. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "item_chest",
+    "subject": "closed wooden treasure chest",
+    "size": 256,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: closed wooden treasure chest. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "item_chest_open",
+    "subject": "open wooden treasure chest filled with gold coins and gems",
+    "size": 256,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: open wooden treasure chest filled with gold coins and gems. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "item_potion",
+    "subject": "red healing potion in glass bottle",
+    "size": 256,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: red healing potion in glass bottle. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "gem_on",
+    "subject": "glowing red faceted diamond-shaped ruby",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: glowing red faceted diamond-shaped ruby. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "gem_off",
+    "subject": "unlit gray faceted diamond-shaped gem",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: unlit gray faceted diamond-shaped gem. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "heart",
+    "subject": "red heart",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: red heart. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "heart_empty",
+    "subject": "empty heart with gray outline, hollow center",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: empty heart with gray outline, hollow center. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "icon_ko",
+    "subject": "brush and blank rolled scroll, no writing",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: brush and blank rolled scroll, no writing. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "icon_en",
+    "subject": "quill pen and blank open book, no writing",
+    "size": 128,
+    "kind": "sprite",
+    "prompt": "Use case: stylized-concept. Create ONE game sprite: quill pen and blank open book, no writing. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Single subject isolated on perfectly uniform solid pure magenta #FF00FF background (not transparency, not checkerboard); no magenta in subject. Full body/object fully visible, 10 percent empty padding on every side, square composition.  No ground plane or exterior drop shadow. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_1",
+    "subject": "grassy village",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: grassy village. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_2",
+    "subject": "mushroom forest",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: mushroom forest. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_3",
+    "subject": "seaside and cave",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: seaside and cave. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_4",
+    "subject": "desert pyramids",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: desert pyramids. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_5",
+    "subject": "snow-covered mountains",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: snow-covered mountains. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_6",
+    "subject": "volcano",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: volcano. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_map_7",
+    "subject": "dragon castle",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "map",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: dragon castle. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Overhead top-down fantasy map. Place thematic landmarks at outer edges; middle 60 percent simple uncluttered terrain for overlay game board. NO roads, NO paths, NO board tiles. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_1",
+    "subject": "grassy village",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: grassy village. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_2",
+    "subject": "mushroom forest",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: mushroom forest. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_3",
+    "subject": "seaside and cave",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: seaside and cave. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_4",
+    "subject": "desert pyramids",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: desert pyramids. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_5",
+    "subject": "snow-covered mountains",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: snow-covered mountains. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_6",
+    "subject": "volcano",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: volcano. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_battle_7",
+    "subject": "dragon castle",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "battle",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: dragon castle. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Side-view battle stage. Lower third is flat ground for characters. Center kept empty. Place thematic detail along edges and distant background. NO characters. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_title",
+    "subject": "castle and a dragon flying below a night sky; top third empty dark sky for title logo",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "background",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: castle and a dragon flying below a night sky; top third empty dark sky for title logo. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_inn",
+    "subject": "cozy welcoming inn interior",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "background",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: cozy welcoming inn interior. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_elf",
+    "subject": "magical fairy spring",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "background",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: magical fairy spring. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  },
+  {
+    "name": "bg_ending",
+    "subject": "celebration with rainbow, castle and fireworks",
+    "size": [
+      1280,
+      720
+    ],
+    "kind": "background",
+    "prompt": "Use case: stylized-concept. Create ONE wide 16:9 game background: celebration with rainbow, castle and fireworks. Bright cute 1990s 16-bit arcade fantasy pixel art, bold dark outlines, crisp pixel clusters, vibrant colors, appropriate for ages 5 and 7, not frightening. Opaque full-bleed landscape. Absolutely NO text, letters, numbers, labels, signatures, logos, watermarks, frames, or panels."
+  }
+]

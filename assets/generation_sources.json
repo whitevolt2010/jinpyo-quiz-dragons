@@ -1,0 +1,218 @@
+[
+  {
+    "name": "hero_warrior",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-6e5ad6c2-366d-4478-b402-6c1e0ae2dbde.png"
+  },
+  {
+    "name": "hero_wizard",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-72cb0424-a86b-45db-a1ba-7776ef036ced.png"
+  },
+  {
+    "name": "hero_amazon",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-6b46bbd9-624e-4ffe-a2b5-69fbbfbfddb7.png"
+  },
+  {
+    "name": "hero_ninja",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-4a7e2325-255e-47c7-b45a-83d9f321e99e.png"
+  },
+  {
+    "name": "mon_01",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-8a0acdf8-bb44-436a-88e9-84d4e933e747.png"
+  },
+  {
+    "name": "mon_02",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-2aff74ae-efa1-409c-bab2-1523a7d60527.png"
+  },
+  {
+    "name": "mon_03",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-5c1bb3e3-dcfd-4758-ad6f-a3b2571c4c03.png"
+  },
+  {
+    "name": "mon_04",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-76f7c035-adaa-4975-91de-3b75a553b783.png"
+  },
+  {
+    "name": "mon_05",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-850b39dc-398f-4fd1-9bd8-2ec5196ec196.png"
+  },
+  {
+    "name": "mon_06",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-52466e78-5955-4d84-a76c-78a14c6c14f7.png"
+  },
+  {
+    "name": "mon_07",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-e432ebcf-84fb-4cdc-b672-7f97d22a22da.png"
+  },
+  {
+    "name": "mon_08",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-13bf88a1-06b0-408f-9ff8-e42d0646fe19.png"
+  },
+  {
+    "name": "mon_09",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-e9c44346-9a87-4c3c-b4cc-30fccd36fe69.png"
+  },
+  {
+    "name": "mon_10",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-9acdcd8c-8937-4e93-991b-e694fdc07f85.png"
+  },
+  {
+    "name": "mon_11",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-164a8893-2f0d-4b8f-8e13-3a4e700231bc.png"
+  },
+  {
+    "name": "mon_12",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-7758d28f-22cd-4542-bba0-0d73c4de913d.png"
+  },
+  {
+    "name": "mon_13",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-6296591c-9328-4074-be28-85d7c1872c1e.png"
+  },
+  {
+    "name": "mon_14",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-b270e69e-a450-486a-9c09-19858f5a573e.png"
+  },
+  {
+    "name": "boss_1",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-72fd0103-6ce4-48da-b842-3dc9f77ec7c9.png"
+  },
+  {
+    "name": "boss_2",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-062cef27-ddcf-4815-8f62-1e9c10aa70cf.png"
+  },
+  {
+    "name": "boss_3",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-16afa32e-7f91-4feb-b7e1-8e86debed11c.png"
+  },
+  {
+    "name": "boss_4",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-3d2e403d-a86f-48d5-ae02-5a41a544672d.png"
+  },
+  {
+    "name": "boss_5",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-3631a362-d7b3-46a7-973f-ad622c726d45.png"
+  },
+  {
+    "name": "boss_6",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-67d54863-53d6-4f85-a651-c7f53f8b9479.png"
+  },
+  {
+    "name": "boss_7",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-846e83d3-f0f8-4887-897f-c133b69a49da.png"
+  },
+  {
+    "name": "npc_inn",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-96e13494-e9ed-43f8-ac09-f0d1f55a049b.png"
+  },
+  {
+    "name": "npc_elf",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-57080ee1-5c39-463e-8452-f044d92fa58f.png"
+  },
+  {
+    "name": "item_chest",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-c7a3f2e2-1dad-40bd-bb88-96e0b293a963.png"
+  },
+  {
+    "name": "item_chest_open",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-179b4d1c-c8e5-414f-870d-94c9943db0ec.png"
+  },
+  {
+    "name": "item_potion",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-d09c5493-4e2c-4c77-9218-b635763d843c.png"
+  },
+  {
+    "name": "gem_on",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-53773981-0bf9-4428-bfe6-d3b8e322966c.png"
+  },
+  {
+    "name": "gem_off",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-9672f0ce-bf68-411d-9e5d-ba3dba873464.png"
+  },
+  {
+    "name": "heart",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-38144332-9dcd-4fa3-a1c7-efe8bcc21bc4.png"
+  },
+  {
+    "name": "heart_empty",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-78bb2001-6c39-4ad3-92b9-6d950527596d.png"
+  },
+  {
+    "name": "icon_ko",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-5a48dabd-aade-46be-a91e-1f31eaeadbcc.png"
+  },
+  {
+    "name": "icon_en",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-9325e041-0b83-48e7-ba05-92d6a64da106.png"
+  },
+  {
+    "name": "bg_map_1",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-aca556e7-7583-4253-a19a-f40af5bec63e.png"
+  },
+  {
+    "name": "bg_map_2",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-7518251d-0b15-463e-8c67-9b2f3cd077c5.png"
+  },
+  {
+    "name": "bg_map_3",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-5cdc809c-368c-49b6-bdcd-0db50ad3663a.png"
+  },
+  {
+    "name": "bg_map_4",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-d078b16d-57fe-4147-8d27-189feee0d1d3.png"
+  },
+  {
+    "name": "bg_map_5",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-fac3567f-1ea9-4203-8b20-b22f4a1a363f.png"
+  },
+  {
+    "name": "bg_map_6",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-1dcf1791-15ac-4d58-b82b-4955eb2e46cd.png"
+  },
+  {
+    "name": "bg_map_7",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-5f24c9c6-95eb-462c-a168-b20770892ca9.png"
+  },
+  {
+    "name": "bg_battle_1",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-0371d4b9-9fb7-460e-83cd-ee0883c124da.png"
+  },
+  {
+    "name": "bg_battle_2",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-94b9db95-e21b-4ca6-a6ee-30bf22963c61.png"
+  },
+  {
+    "name": "bg_battle_3",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-d9f70717-4446-403b-9595-68edce470521.png"
+  },
+  {
+    "name": "bg_battle_4",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-f1081f62-0c80-4b57-be8a-080b49bd3c11.png"
+  },
+  {
+    "name": "bg_battle_5",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-95d5efdb-5503-45b0-96f3-664157efafa3.png"
+  },
+  {
+    "name": "bg_battle_6",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-8b36d1e8-3875-4a6c-af70-f7b89055d251.png"
+  },
+  {
+    "name": "bg_battle_7",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-54ac3ca7-0f4a-4145-953b-e18db32587d5.png"
+  },
+  {
+    "name": "bg_title",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-8e8e6511-16c1-456d-b1bd-11978e527f9d.png"
+  },
+  {
+    "name": "bg_inn",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-9a178339-58c0-49ab-aa0b-5897d5279351.png"
+  },
+  {
+    "name": "bg_elf",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-6290288d-5531-45db-ba94-2e90f392bf3c.png"
+  },
+  {
+    "name": "bg_ending",
+    "path": "/Users/hyunsoook/.codex/generated_images/01a0fa31-1ddf-7442-a1a4-9d93b061dfaf/exec-1e165c02-6d7c-4781-9fbc-78c5090dabd4.png"
+  }
+]
