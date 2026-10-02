@@ -29,7 +29,7 @@ function sprHTML(name, emo) { return '<img src="' + IMG + name + '.webp" alt="" 
 /* ===================== 소리 ===================== */
 const SFX_NAMES = ['coin', 'start', 'select', 'cursor', 'dice_roll', 'dice_stop', 'step', 'correct', 'wrong', 'attack', 'hit', 'enemy_attack', 'gem', 'monster_down', 'heal', 'treasure', 'magic', 'boss_appear', 'tick', 'timer_warn', 'levelup', 'stage_clear', 'game_over', 'continue'];
 const BGM_NAMES = ['title', 'map', 'battle', 'boss', 'inn', 'ending'];
-const BGM_VOL = 0.2;   /* 배경음악은 작게 — 공부에 방해되지 않게 */
+const BGM_VOL = 0.3;   /* 배경음악은 작게 — 공부에 방해되지 않게 */
 let AC = null, master, sfxBus, bgmBus, voiceBus;
 const BUF = {};
 let muted = false, bgmNode = null, bgmName = '', voiceNode = null;
@@ -241,9 +241,11 @@ function koVocab(g) {
   const all = (window.KO_VOCAB || []).concat(window.KO_VOCAB2 || []);
   const list = all.filter(x => x[0] === g);
   if (!list.length) return null;
-  const [gg, type, q, a, w, ex, big] = draw('kv' + g, list, x => x[2] + '|' + (x[6] || ''));
+  const [gg, type, q0, a, w, ex, big] = draw('kv' + g, list, x => x[2] + '|' + (x[6] || ''));
+  const q = q0.replace(/ \((연습|과일|까닭)\)$/, '');
   seenQ('kv' + q);
   const say = [['k', q.replace(/\(\s*\)/g, '빈칸')]];
+  if (big) say.push(['k', big.replace(/\(\s*\)/g, '빈칸')]);
   if (MEANING_TYPES.includes(type)) {
     const same = all.filter(x => x[1] === type && x[3] !== a && Math.abs(x[0] - g) <= 1);
     const word = wordOf(q);
@@ -355,8 +357,9 @@ function enVocab2(g) {
   const list = (window.EN_VOCAB2 || []).filter(x => x[0] === g);
   if (!list.length) return null;
   const [gg, type, q, big, a, w, ex, sp] = draw('ev' + g, list, x => x[2] + '|' + x[3] + '|' + x[4]);
-  const say = [['k', q]]; if (big && !/_/.test(big)) say.push(['e', big]);
-  return fromAW({ q, big: big || '', a, w: shuf(w).slice(0, 3), tag: type, hint: ex, say, sayAfter: sp ? [['e', sp]] : null });
+  const showBig = type === '다른 하나' ? '' : (big || '');
+  const say = [['k', q]]; if (showBig && !/_/.test(showBig) && !/ \/ /.test(showBig)) say.push(['e', showBig]);
+  return fromAW({ q, big: showBig, a, w: shuf(w).slice(0, 3), tag: type, hint: ex, say, sayAfter: sp ? [['e', sp]] : null });
 }
 function enQuestion(g) {
   if (window.EN_VOCAB2 && Math.random() < 0.55) { const q = enVocab2(g); if (q) { q.cat = 'en'; return q; } }

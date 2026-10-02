@@ -1,0 +1,280 @@
+{
+  "config": {
+    "bpm": 80,
+    "key": 60,
+    "lead": "box",
+    "pad": 0.16,
+    "bass": 0.15,
+    "chords": [
+      0,
+      5,
+      3,
+      4
+    ],
+    "melody": [
+      2,
+      4,
+      3,
+      2,
+      2,
+      1,
+      1,
+      0
+    ],
+    "instruments": "부드러운 오르골, 따뜻한 패드, 사인파 베이스"
+  },
+  "melody": [
+    {
+      "beat": 0,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 0.014762
+    },
+    {
+      "beat": 2,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 1.514762
+    },
+    {
+      "beat": 4,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 3.014762
+    },
+    {
+      "beat": 6,
+      "midi": 76,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 4.514762
+    },
+    {
+      "beat": 8,
+      "midi": 76,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 6.014762
+    },
+    {
+      "beat": 10,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 7.514762
+    },
+    {
+      "beat": 12,
+      "midi": 72,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 9.014762
+    },
+    {
+      "beat": 16,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 12.014762
+    },
+    {
+      "beat": 18,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 13.514762
+    },
+    {
+      "beat": 20,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 15.014762
+    },
+    {
+      "beat": 22,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 16.514762
+    },
+    {
+      "beat": 24,
+      "midi": 71,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 18.014762
+    },
+    {
+      "beat": 26,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 19.514762
+    },
+    {
+      "beat": 28,
+      "midi": 79,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 21.014762
+    },
+    {
+      "beat": 32,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 24.014762
+    },
+    {
+      "beat": 34,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 25.514762
+    },
+    {
+      "beat": 36,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 27.014762
+    },
+    {
+      "beat": 38,
+      "midi": 76,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 28.514762
+    },
+    {
+      "beat": 40,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 30.014762
+    },
+    {
+      "beat": 42,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 31.514762
+    },
+    {
+      "beat": 44,
+      "midi": 76,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 33.014762
+    },
+    {
+      "beat": 48,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 36.014762
+    },
+    {
+      "beat": 50,
+      "midi": 77,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 37.514762
+    },
+    {
+      "beat": 52,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 39.014762
+    },
+    {
+      "beat": 54,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 40.514762
+    },
+    {
+      "beat": 56,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 42.014762
+    },
+    {
+      "beat": 58,
+      "midi": 74,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 43.514762
+    },
+    {
+      "beat": 60,
+      "midi": 71,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 45.014762
+    },
+    {
+      "beat": 64,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 48.014762
+    },
+    {
+      "beat": 66,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 49.514762
+    },
+    {
+      "beat": 68,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 51.014762
+    },
+    {
+      "beat": 70,
+      "midi": 76,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 52.514762
+    },
+    {
+      "beat": 72,
+      "midi": 76,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 54.014762
+    },
+    {
+      "beat": 74,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 55.514762
+    },
+    {
+      "beat": 76,
+      "midi": 72,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 57.014762
+    },
+    {
+      "beat": 80,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 60.014762
+    },
+    {
+      "beat": 82,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 61.514762
+    },
+    {
+      "beat": 84,
+      "midi": 79,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 63.014762
+    },
+    {
+      "beat": 86,
+      "midi": 69,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 64.514762
+    },
+    {
+      "beat": 88,
+      "midi": 71,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 66.014762
+    },
+    {
+      "beat": 90,
+      "midi": 72,
+      "duration_seconds": 2.05,
+      "render_start_seconds": 67.514762
+    },
+    {
+      "beat": 92,
+      "midi": 79,
+      "duration_seconds": 2.95,
+      "render_start_seconds": 69.014762
+    }
+  ]
+}

@@ -6,7 +6,7 @@ global.window=global;
 const keys=new Set();
 const add=(l,t)=>{ if(t) keys.add(l+':'+t); };
 eval(fs.readFileSync('src/ko_old.js','utf8')+'const KO_VOCAB=[];window.KO_VOCAB=KO_VOCAB;'+fs.readFileSync('src/en_data.js','utf8')+"const clamp = (v, a, b) => Math.max(a, Math.min(b, v));"+sec+`
-let R={who:'jinseo',stage:1};
+let R={who:'jinseo',stage:1,level:0}; global.localStorage={getItem(){return null},setItem(){}};
 for (let st=1; st<=7; st++) for (const cat of ['ko','en']) for (let k=0;k<3000;k++){ R.stage=st; const q=makeQuestion(cat); for (const arr of [q.say,q.sayAfter,q.answerSay]) (arr||[]).forEach(([l,t])=>add(l,t)); }
 WORDS.forEach(w=>{ add('e',w.w); add('k',w.k); });
 SENTS.forEach(s=>add('e',s.en)); TALKS.forEach(t=>{add('e',t.q);add('e',t.a);});
@@ -18,7 +18,11 @@ Object.values(KIDS).forEach(k=>add('k',k.name)); Object.values(HEROES).forEach(h
 `);
 for (const m of g.matchAll(/\['([ke])', '([^']+)'\]/g)) add(m[1], m[2]);
 eval(fs.readFileSync('src/ko_vocab.js','utf8')+';global.__V=KO_VOCAB');
+eval(fs.readFileSync('src/ko_vocab2.js','utf8')+';global.KO_VOCAB2=KO_VOCAB2');
+eval(fs.readFileSync('src/en_vocab2.js','utf8')+';global.EN_VOCAB2=EN_VOCAB2');
 __V.forEach(x=>add('k', x[2].replace(/\(\s*\)/g, '빈칸')));
+if (typeof KO_VOCAB2!=='undefined') KO_VOCAB2.forEach(x=>{ add('k', x[2].replace(/ \((연습|과일|까닭)\)$/, '').replace(/\(\s*\)/g, '빈칸')); if (x[6]) add('k', x[6].replace(/\(\s*\)/g, '빈칸')); });
+if (typeof EN_VOCAB2!=='undefined') EN_VOCAB2.forEach(x=>{ add('k', x[2]); if (x[3] && x[1]!=='다른 하나' && !/_/.test(x[3]) && !/ \/ /.test(x[3])) add('e', x[3]); if (x[7]) add('e', x[7]); });
 const list=[...keys].sort();
 fs.writeFileSync('voice_list.json', JSON.stringify(list,null,0));
 console.log(list.length, list.filter(k=>k[0]==='k').length, 'ko');

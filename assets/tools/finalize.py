@@ -2,7 +2,8 @@
 from pathlib import Path
 import hashlib, json
 from PIL import Image
-from build_audio import SFX, CONFIG
+from build_audio import SFX
+from build_bgm_v2 import CONFIG
 
 ROOT=Path(__file__).resolve().parents[1]
 specs=json.loads((ROOT/'generation_prompts.json').read_text())
@@ -17,9 +18,10 @@ for row in images+audio:
     row['bytes']=path.stat().st_size
     row['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
     if 'duration_seconds' in row:
-        assert abs(row['peak_dbfs']+3)<.15,(row['path'],row['peak_dbfs'])
+        target = -6 if row['path'].startswith('bgm/') else -3
+        assert abs(row['peak_dbfs']-target)<.15,(row['path'],row['peak_dbfs'])
         if row['path'].startswith('bgm/'):
-            assert 40<=row['duration_seconds']<=70
+            assert 60<=row['duration_seconds']<=90
             if row['loop']: assert row['loop_boundary_delta']<.01
 total=sum(r['bytes'] for r in images+audio)
 manifest={'schema_version':1,'path_base':'assets/','image_count':len(images),'sfx_count':len(SFX),'bgm_count':len(CONFIG),'total_media_bytes':total,'budget_bytes':15000000,'within_media_budget':total<=15000000,'images':images,'audio':audio,'contact_sheet':{'path':'contact_sheet.png','bytes':(ROOT/'contact_sheet.png').stat().st_size},'notes':['Images: built-in image generation, Pillow WebP quality 85.','Audio: original procedural synthesis, 44.1 kHz mono MP3 128 kbps.','Loop points are decoded sample 0 through decoded_samples, end exclusive. MP3 gapless metadata must be honored.','gem_off uses the exact geometry of generated gem_on, recolored gray.']}

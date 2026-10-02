@@ -1,0 +1,244 @@
+{
+  "config": {
+    "bpm": 72,
+    "key": 55,
+    "lead": "cello",
+    "pad": 0.27,
+    "bass": 0.22,
+    "chords": [
+      0,
+      3,
+      5,
+      4
+    ],
+    "melody": [
+      0,
+      2,
+      1,
+      2,
+      2,
+      1,
+      1,
+      0
+    ],
+    "instruments": "느린 현악풍 패드, 낮은 첼로풍 선율, 부드러운 베이스"
+  },
+  "melody": [
+    {
+      "beat": 0,
+      "midi": 43,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 79.998367
+    },
+    {
+      "beat": 2,
+      "midi": 47,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 1.665034
+    },
+    {
+      "beat": 4,
+      "midi": 50,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 3.331701
+    },
+    {
+      "beat": 8,
+      "midi": 50,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 6.665034
+    },
+    {
+      "beat": 10,
+      "midi": 52,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 8.331701
+    },
+    {
+      "beat": 12,
+      "midi": 52,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 9.998367
+    },
+    {
+      "beat": 16,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 13.331701
+    },
+    {
+      "beat": 18,
+      "midi": 59,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 14.998367
+    },
+    {
+      "beat": 20,
+      "midi": 52,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 16.665034
+    },
+    {
+      "beat": 24,
+      "midi": 54,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 19.998367
+    },
+    {
+      "beat": 26,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 21.665034
+    },
+    {
+      "beat": 28,
+      "midi": 50,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 23.331701
+    },
+    {
+      "beat": 32,
+      "midi": 47,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 26.665034
+    },
+    {
+      "beat": 34,
+      "midi": 50,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 28.331701
+    },
+    {
+      "beat": 36,
+      "midi": 55,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 29.998367
+    },
+    {
+      "beat": 40,
+      "midi": 52,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 33.331701
+    },
+    {
+      "beat": 42,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 34.998367
+    },
+    {
+      "beat": 44,
+      "midi": 55,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 36.665034
+    },
+    {
+      "beat": 48,
+      "midi": 59,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 39.998367
+    },
+    {
+      "beat": 50,
+      "midi": 50,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 41.665034
+    },
+    {
+      "beat": 52,
+      "midi": 55,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 43.331701
+    },
+    {
+      "beat": 56,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 46.665034
+    },
+    {
+      "beat": 58,
+      "midi": 57,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 48.331701
+    },
+    {
+      "beat": 60,
+      "midi": 54,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 49.998367
+    },
+    {
+      "beat": 64,
+      "midi": 43,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 53.331701
+    },
+    {
+      "beat": 66,
+      "midi": 47,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 54.998367
+    },
+    {
+      "beat": 68,
+      "midi": 50,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 56.665034
+    },
+    {
+      "beat": 72,
+      "midi": 50,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 59.998367
+    },
+    {
+      "beat": 74,
+      "midi": 52,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 61.665034
+    },
+    {
+      "beat": 76,
+      "midi": 52,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 63.331701
+    },
+    {
+      "beat": 80,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 66.665034
+    },
+    {
+      "beat": 82,
+      "midi": 59,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 68.331701
+    },
+    {
+      "beat": 84,
+      "midi": 52,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 69.998367
+    },
+    {
+      "beat": 88,
+      "midi": 54,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 73.331701
+    },
+    {
+      "beat": 90,
+      "midi": 55,
+      "duration_seconds": 2.2,
+      "render_start_seconds": 74.998367
+    },
+    {
+      "beat": 92,
+      "midi": 50,
+      "duration_seconds": 3.2,
+      "render_start_seconds": 76.665034
+    }
+  ]
+}

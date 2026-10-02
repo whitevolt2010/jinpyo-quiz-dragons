@@ -1,0 +1,62 @@
+{
+  "tracks": [
+    {
+      "path": "bgm/title.mp3",
+      "integrated_lufs": -18.4,
+      "loudness_range_lu": 1.9,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 0,
+      "sha256_matches": true,
+      "decode_ok": true
+    },
+    {
+      "path": "bgm/map.mp3",
+      "integrated_lufs": -18.1,
+      "loudness_range_lu": 1.6,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 0,
+      "sha256_matches": true,
+      "decode_ok": true
+    },
+    {
+      "path": "bgm/battle.mp3",
+      "integrated_lufs": -18.8,
+      "loudness_range_lu": 2.3,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 0,
+      "sha256_matches": true,
+      "decode_ok": true
+    },
+    {
+      "path": "bgm/boss.mp3",
+      "integrated_lufs": -17.8,
+      "loudness_range_lu": 2.1,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 0,
+      "sha256_matches": true,
+      "decode_ok": true
+    },
+    {
+      "path": "bgm/inn.mp3",
+      "integrated_lufs": -18.9,
+      "loudness_range_lu": 2.3,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 0,
+      "sha256_matches": true,
+      "decode_ok": true
+    },
+    {
+      "path": "bgm/ending.mp3",
+      "integrated_lufs": -18.0,
+      "loudness_range_lu": 1.7,
+      "true_peak_dbfs": -6.0,
+      "silent_10ms_blocks_below_minus60dbfs": 19,
+      "sha256_matches": true,
+      "decode_ok": true
+    }
+  ],
+  "protected_files_checked": 37,
+  "protected_files_changed": [],
+  "subjective_listening_performed": false,
+  "browser_playback_tested": false
+}

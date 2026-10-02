@@ -29,7 +29,8 @@ def make(job):
     rate = '150' if lang == 'e' else '175'
     spoken = text.replace('~', '').replace('·', ', ')
     aiff = dst + '.aiff'
-    subprocess.run(['say', '-v', voice, '-r', rate, '-o', aiff, spoken], check=True)
+    txt = dst + '.txt'; open(txt, 'w', encoding='utf-8').write(spoken)
+    subprocess.run(['say', '-v', voice, '-r', rate, '-o', aiff, '-f', txt], check=True); os.remove(txt)
     subprocess.run(['afconvert', '-f', 'm4af', '-d', 'aac', '-b', '48000', aiff, dst], check=True)
     os.remove(aiff); return 'say'
 with cf.ThreadPoolExecutor(6) as ex:
